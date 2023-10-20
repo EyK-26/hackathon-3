@@ -12,7 +12,8 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        return 'homepage';
+        $animals = Animal::query()->paginate(20);
+        return view('animals.index', compact("animals"));
     }
 
     /**
@@ -51,7 +52,8 @@ class AnimalController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $animal = Animal::findOrFail($id);
+        return view('animals.details', ['animal' => $animal]);
     }
 
     /**
