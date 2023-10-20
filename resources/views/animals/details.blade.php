@@ -12,7 +12,7 @@
             <div>
                 <a href="{{ route('animals.edit', $animal->id ) }}">[eddit]</a>
                 <a href="{{ route('animals.destroy', $animal->id ) }}">[delete]</a>
-                <a href="{{ route('visits.create') }}">[new visit]</a>
+                <a href="{{ route('visits.create', ['animal_id' => $anima->id, 'owner_id' => $animal->owner->id]) }}">[new visit]</a>
             </div>
         </div>
 
@@ -49,7 +49,7 @@
                     border-collapse: collapse;
                 }
             </style>
-            <table style="padding-top: 2em;">
+            <table style="margin: 2em;">
                 <tr>
                     <th>Date</th>
                     <th>Detail</th>
