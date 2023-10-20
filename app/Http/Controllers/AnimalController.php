@@ -73,9 +73,16 @@ class AnimalController extends Controller
         $animal = Animal::findOrFail($id);
 
         $owner = $animal->getOwner();
+        $breedsArray = Animal::query()->select('breed')->distinct()->orderBy('breed', 'asc')->get()->toArray();
+        $breeds = array_map(function ($item) {
+            return $item['breed'];
+        }, $breedsArray);
 
 
-        return view('animals.form', compact('animal', 'owner'));
+
+
+
+        return view('animals.form', compact('animal', 'owner', 'breeds'));
     }
 
     /**
