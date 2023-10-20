@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Form</title>
+    <style>
+        .alert-success {
+            color: darkgreen;
+            background-color: lightgreen;
+        }
+        .alert-error {
+            color: darkred;
+            background-color: rgb(226, 161, 161);
+            font-size: 2rem;
+        }
+    </style>
 </head>
 <body>
 
