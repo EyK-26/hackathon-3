@@ -8,8 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Image extends Model
 {
     use HasFactory;
-    public function animal()
-    {
-        return $this->hasOne(Animal::class);
-    }
+    //not needed to have func
 }
