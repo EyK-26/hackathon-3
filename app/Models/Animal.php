@@ -26,4 +26,9 @@ class Animal extends Model
     public function getAge()
     {
     }
+
+    public function visits()
+    {
+        return $this->hasMany(Visit::class);
+    }
 }
