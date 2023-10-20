@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Owner;
 use Illuminate\Http\Request;
 
 class OwnerController extends Controller
@@ -35,7 +36,8 @@ class OwnerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $owner = Owner::findOrFail($id);
+        return view('owners.details', ['owner' => $owner]);
     }
 
     /**
