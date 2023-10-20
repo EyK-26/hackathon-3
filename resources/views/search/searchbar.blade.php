@@ -1,7 +1,6 @@
-<form action="{{ route('animals.index', ) }}" method="get">
-    @csrf
-    <select name="search" id="search" value=>
-        <option value="" disabled>Search by</option>
+<form action="{{ route('animals.search') }}" method="get">
+    {{-- @csrf not neeeded for get --}}
+    <select name="search" id="search">
         <option value="animal">Pet</option>
         <option value="owner">Owner</option>
     </select>

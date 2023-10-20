@@ -3,8 +3,8 @@
 <body>
     @include('components.topmenu')
     @include('search.searchbar')
-    <hr>
-    <h1>Our patients</h1>
+    <h1>Searched Patient</h1>
+
     @if (count($animals) > 0)
     <ul>
         @foreach ($animals as $animal)
@@ -23,6 +23,8 @@
         <hr>
         @endforeach
     </ul>
+    @else
+    <h1>Not found</h1>
     @endif
 </body>
 @include('components.htmlclose')
