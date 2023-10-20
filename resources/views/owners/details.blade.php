@@ -1,15 +1,13 @@
-{{ $owner->first_name }}
-
 <h1>Owner details</h1>
 <h2> {{ $owner->first_name . ' ' . $owner->surname }} </h2>
 @if (!empty($owner->email))
-<span> email: {{ $owner->email }} jakub53k@gmail.com </span>
+<span> email: {{ $owner->email }} </span>
 @else
 <span> No email </span>
 @endif
 
 @if (!empty($owner->phone))
-<span> tel: {{ $owner->phone }} +421 948 171 031 </span>
+<span> tel: {{ $owner->phone }} </span>
 @else
 <span> No phone number </span>
 @endif
@@ -21,5 +19,7 @@
 <h3> No Adress </h3>
 @endif
 
-
-<p> Short Info </p>
+<h2>{{ $owner->first_name . "'s pets: "}}</h2>
+@foreach ($owner->animals as $pet)
+<li> {{ $pet->name }} </li>
+@endforeach
