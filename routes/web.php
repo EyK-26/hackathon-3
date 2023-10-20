@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnimalController;
 use App\Http\Controllers\OwnerController;
+use App\Http\Controllers\VisitController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,7 +35,6 @@ Route::get('/owners/{owner}', [OwnerController::class, 'show'])->whereNumber('ow
 
 Route::get('/search', [AnimalController::class, 'search'])->name('animals.search');
 Route::redirect('/', '/animals');
-
 
 Route::get('/visits/create', [VisitController::class, 'create'])->name('visits.create');
 Route::post('/visits', [VisitController::class, 'store'])->name('visits.store');
