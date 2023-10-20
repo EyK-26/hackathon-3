@@ -49,6 +49,10 @@
                     border: 1px solid black;
                     border-collapse: collapse;
                 }
+
+                td {
+                    padding: 0 1em;
+                }
             </style>
             <table style="margin: 2em;">
                 <tr>

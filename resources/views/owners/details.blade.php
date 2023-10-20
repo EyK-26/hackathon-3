@@ -20,12 +20,42 @@
         <h3> No Adress </h3>
         @endif
     </div>
-    <div class="pets" style="background-color: #afafaf; max-width: 70em; padding-bottom: 5em; padding-top: 0.1em; padding-left: 2em;">
-        <h2>{{ $owner->first_name . "'s pets: "}}</h2>
-        @foreach ($owner->animals as $animal)
-        <div style="margin: 20px;">
-            @include('animals.details')
+    <div style="display: flex;">
+        <div class="pets" style="background-color: #afafaf; max-width: 70em; padding-bottom: 5em; padding-top: 0.1em; padding-left: 2em;">
+            <h2>{{ $owner->first_name . "'s pets: "}}</h2>
+            @foreach ($owner->animals as $animal)
+            <div style="margin: 20px;">
+                @include('animals.details')
+            </div>
+            @endforeach
         </div>
-        @endforeach
+        <div>
+            <style>
+                table,
+                th,
+                td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                }
+
+                td {
+                    padding: 0 1em;
+                }
+            </style>
+            <table style="margin: 2em;">
+                <tr>
+                    <th>Date</th>
+                    <th>Pet</th>
+                    <th>Detail</th>
+                    <tr />
+                    @foreach ($owner->visits as $visit)
+                <tr>
+                    <td>{{ $visit->visit_date }}</td>
+                    <td>{{ $visit->animal->name }}</td>
+                    <td>{{ $visit->description }}</td>
+                    <tr />
+                    @endforeach
+            </table>
+        </div>
     </div>
 </body>
