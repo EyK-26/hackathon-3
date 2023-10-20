@@ -1,4 +1,7 @@
 <body>
+    @if (Request::is('animals/*'))
+    @include('components.topmenu')
+    @endif
     <div class="pet" style="border: solid 2px black; background-color: beige; max-width: 70em; padding: 10px 50px;">
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
             @if (!Request::is('animals/*'))
@@ -29,8 +32,7 @@
 
         <div class="info" style="display: flex; flex-direction: row; justify-content: space-between;">
             <img src="/images/pets/{{ $animal->image->path }}" alt="{{ $animal->name }}" style="max-height: 20em;" />
-            <div class="details"
-                style="border: solid 2px black; background-color: lightgray; max-height: 20em; padding: 1.5em;">
+            <div class="details" style="border: solid 2px black; background-color: lightgray; max-height: 20em; padding: 1.5em;">
                 <span> species: {{ $animal->species }} </span>
                 <br>
                 <span> breed: {{ $animal->breed }} </span>

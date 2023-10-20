@@ -1,4 +1,6 @@
 <body style="background-color: #d1d1d1; padding: 0; margin: 0;">
+
+    @include('components.topmenu')
     <div style="padding-left: 2em;">
         <h1> {{ $owner->first_name . ' ' . $owner->surname }} </h1>
         @if (!empty($owner->email))
