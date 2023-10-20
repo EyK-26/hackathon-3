@@ -18,11 +18,11 @@
         @if (!Request::is('owners/*'))
         <h3> owner:
             <a href="{{ route('owners.show', $animal->owner->id) }}">
-                {{ $animal->owner->first_name }}
+                {{ $animal->owner->first_name.' '.$animal->owner->surname }}
         </h3>
         </a>
         @else
-        <h3> owner: {{ $animal->owner->first_name }} </h3>
+        <h3> owner: {{ $animal->owner->first_name.' '.$animal->owner->surname }} </h3>
         @endif
         <br>
 
