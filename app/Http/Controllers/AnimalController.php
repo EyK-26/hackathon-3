@@ -98,4 +98,33 @@ class AnimalController extends Controller
     {
         //
     }
+    public function search(Request $request)
+    {
+        $error = 'not found';
+        $searchBy = $request->input('search', false);
+        $name = $request->input("name", false);
+        if ($searchBy === 'animal') {
+            $animals = Animal::query()
+                ->where("name", "like", "%" . $name . "%")
+                ->limit(10)
+                ->get();
+            return view('animals.search', compact("animals"));
+        } elseif ($searchBy === 'owner') {
+            $owners = Owner::query()
+                ->where("first_name", "like", "%" . $name . "%")
+                ->orWhere("surname", "like", "%" . $name . "%")
+                ->limit(10)
+                ->get();
+            return view('owners.search', compact("owners"));
+        } else {
+            return redirect('/');
+        }
+    }
+
+    private function validateAnimal(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+    }
 }
