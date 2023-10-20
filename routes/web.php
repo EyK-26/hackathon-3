@@ -31,3 +31,6 @@ Route::delete('/animals/{animal}', [AnimalController::class, 'destroy'])->whereN
 Route::get('/animals/{animal}', [AnimalController::class, 'show'])->whereNumber('animal')->name('animals.show');
 
 Route::get('/owners/{owner}', [OwnerController::class, 'show'])->whereNumber('owner')->name('owners.show');
+
+
+Route::get('/search', [AnimalController::class, 'search']);
