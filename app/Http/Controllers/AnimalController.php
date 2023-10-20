@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
@@ -11,7 +12,8 @@ class AnimalController extends Controller
      */
     public function index()
     {
-        return 'homepage';
+        $animals = Animal::query()->paginate(20);
+        return view('animals.index', compact("animals"));
     }
 
     /**
