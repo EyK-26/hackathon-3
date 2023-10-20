@@ -44,7 +44,7 @@ class AnimalController extends Controller
 
         session()->flash('success', 'New animal enterd');
 
-        return redirect()->route('animals.edit', $animal->id);
+        return redirect()->route('animals.show', $animal->id);
     }
 
     /**
@@ -87,7 +87,7 @@ class AnimalController extends Controller
 
         session()->flash('success', 'Animal edited');
 
-        return redirect()->route('animals.edit', $animal->id);
+        return redirect()->route('animals.show', $animal->id);
     }
 
     /**
