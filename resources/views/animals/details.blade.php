@@ -12,6 +12,7 @@
             <div>
                 <a href="{{ route('animals.edit', $animal->id ) }}">[eddit]</a>
                 <a href="{{ route('animals.destroy', $animal->id ) }}">[delete]</a>
+                <a href="{{ route('visits.create') }}">[new visit]</a>
             </div>
         </div>
 
@@ -38,6 +39,28 @@
                 <span> weight: {{ $animal->weight }} </span>
                 <br>
             </div>
+        </div>
+        <div>
+            <style>
+                table,
+                th,
+                td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                }
+            </style>
+            <table style="padding-top: 2em;">
+                <tr>
+                    <th>Date</th>
+                    <th>Detail</th>
+                    <tr />
+                    @foreach ($animal->visits as $visit)
+                <tr>
+                    <td>{{ $visit->visit_date }}</td>
+                    <td>{{ $visit->description }}</td>
+                    <tr />
+                    @endforeach
+            </table>
         </div>
     </div>
 </body>
