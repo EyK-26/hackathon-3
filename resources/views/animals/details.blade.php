@@ -12,6 +12,7 @@
             <div>
                 <a href="{{ route('animals.edit', $animal->id ) }}">[eddit]</a>
                 <a href="{{ route('animals.destroy', $animal->id ) }}">[delete]</a>
+                <a href="{{ route('visits.create', ['animal_id' => $animal->id, 'owner_id' => $animal->owner->id]) }}">[new visit]</a>
             </div>
         </div>
 
@@ -28,7 +29,8 @@
 
         <div class="info" style="display: flex; flex-direction: row; justify-content: space-between;">
             <img src="/images/pets/{{ $animal->image->path }}" alt="{{ $animal->name }}" style="max-height: 20em;" />
-            <div class="details" style="border: solid 2px black; background-color: lightgray; max-height: 20em; padding: 1.5em;">
+            <div class="details"
+                style="border: solid 2px black; background-color: lightgray; max-height: 20em; padding: 1.5em;">
                 <span> species: {{ $animal->species }} </span>
                 <br>
                 <span> breed: {{ $animal->breed }} </span>
@@ -38,6 +40,32 @@
                 <span> weight: {{ $animal->weight }} </span>
                 <br>
             </div>
+        </div>
+        <div>
+            <style>
+                table,
+                th,
+                td {
+                    border: 1px solid black;
+                    border-collapse: collapse;
+                }
+
+                td {
+                    padding: 0 1em;
+                }
+            </style>
+            <table style="margin: 2em;">
+                <tr>
+                    <th>Date</th>
+                    <th>Detail</th>
+                    <tr />
+                    @foreach ($animal->visits as $visit)
+                <tr>
+                    <td>{{ $visit->visit_date }}</td>
+                    <td>{{ $visit->description }}</td>
+                    <tr />
+                    @endforeach
+            </table>
         </div>
     </div>
 </body>
