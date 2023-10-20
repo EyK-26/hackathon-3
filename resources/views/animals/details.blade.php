@@ -33,8 +33,7 @@
 
         <div class="info" style="display: flex; flex-direction: row; justify-content: space-between;">
             <img src="/images/pets/{{ $animal->image->path }}" alt="{{ $animal->name }}" style="max-height: 20em;" />
-            <div class="details"
-                style="border: solid 2px black; background-color: lightgray; max-height: 20em; padding: 1.5em;">
+            <div class="details" style="border: solid 2px black; background-color: lightgray; max-height: 20em; padding: 1.5em;">
                 <span> species: {{ $animal->species }} </span>
                 <br>
                 <span> breed: {{ $animal->breed }} </span>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AnimalController extends Controller
 {
@@ -24,7 +25,14 @@ class AnimalController extends Controller
     {
         $animal = new Animal();
 
-        return view('animals.form', compact('animal'));
+        // $breeds = DB::table('animals')->pluck('breed');
+        $breedsArray = Animal::query()->select('breed')->distinct()->orderBy('breed', 'asc')->get()->toArray();
+        $breeds = array_map(function ($item) {
+            return $item['breed'];
+        }, $breedsArray);
+
+
+        return view('animals.form', compact('animal', 'breeds'));
     }
 
     /**
@@ -45,7 +53,7 @@ class AnimalController extends Controller
 
         session()->flash('success', 'New animal enterd');
 
-        return redirect()->route('animals.edit', $animal->id);
+        return redirect()->route('animals.show', $animal->id);
     }
 
     /**
@@ -65,9 +73,16 @@ class AnimalController extends Controller
         $animal = Animal::findOrFail($id);
 
         $owner = $animal->getOwner();
+        $breedsArray = Animal::query()->select('breed')->distinct()->orderBy('breed', 'asc')->get()->toArray();
+        $breeds = array_map(function ($item) {
+            return $item['breed'];
+        }, $breedsArray);
 
 
-        return view('animals.form', compact('animal', 'owner'));
+
+
+
+        return view('animals.form', compact('animal', 'owner', 'breeds'));
     }
 
     /**
@@ -88,7 +103,7 @@ class AnimalController extends Controller
 
         session()->flash('success', 'Animal edited');
 
-        return redirect()->route('animals.edit', $animal->id);
+        return redirect()->route('animals.show', $animal->id);
     }
 
     /**
@@ -96,7 +111,10 @@ class AnimalController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $animal = Animal::findOrFail($id);
+        $animal->delete();
+
+        return redirect('/animals');
     }
     public function search(Request $request)
     {

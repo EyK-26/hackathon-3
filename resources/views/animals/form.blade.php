@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Form</title>
+    <style>
+        .alert-success {
+            color: darkgreen;
+            background-color: lightgreen;
+        }
+        .alert-error {
+            color: darkred;
+            background-color: rgb(226, 161, 161);
+            font-size: 2rem;
+        }
+    </style>
 </head>
 <body>
 
@@ -36,7 +47,14 @@
     <br>
     <label for="breed">Breed</label>
     <br>
-    <input type="text" id="breed" name="breed" value = {{ old('breed', $animal->breed)}}>
+    <select name="breed" id="breed">
+@foreach($breeds as $breed)
+
+<option value={{ $breed }}> {{ $breed }}</option>
+
+@endforeach
+</select>
+
     <br>
     <label for="age">Age</label>
     <br>
@@ -49,6 +67,8 @@
     <button type="submit">Save</button>
 
     </form>
+
+
         
     
 </body>
