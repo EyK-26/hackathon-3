@@ -1,25 +1,31 @@
-{{ $owner->first_name }}
+<body style="background-color: #d1d1d1; padding: 0; margin: 0;">
+    <div style="padding-left: 2em;">
+        <h1> {{ $owner->first_name . ' ' . $owner->surname }} </h1>
+        @if (!empty($owner->email))
+        <span> email: {{ $owner->email }} </span>
+        @else
+        <span> No email </span>
+        @endif
 
-<h1>Owner details</h1>
-<h2> {{ $owner->first_name . ' ' . $owner->surname }} </h2>
-@if (!empty($owner->email))
-<span> email: {{ $owner->email }} jakub53k@gmail.com </span>
-@else
-<span> No email </span>
-@endif
+        @if (!empty($owner->phone))
+        <span> tel: {{ $owner->phone }} </span>
+        @else
+        <span> No phone number </span>
+        @endif
 
-@if (!empty($owner->phone))
-<span> tel: {{ $owner->phone }} +421 948 171 031 </span>
-@else
-<span> No phone number </span>
-@endif
-
-<br>
-@if (!empty($owner->address))
-<h3> {{ $owner->address }} </h3>
-@else
-<h3> No Adress </h3>
-@endif
-
-
-<p> Short Info </p>
+        <br>
+        @if (!empty($owner->address))
+        <h3> {{ $owner->address }} </h3>
+        @else
+        <h3> No Adress </h3>
+        @endif
+    </div>
+    <div class="pets" style="background-color: #afafaf; max-width: 70em; padding-bottom: 5em; padding-top: 0.1em; padding-left: 2em;">
+        <h2>{{ $owner->first_name . "'s pets: "}}</h2>
+        @foreach ($owner->animals as $animal)
+        <div style="margin: 20px;">
+            @include('animals.details')
+        </div>
+        @endforeach
+    </div>
+</body>
