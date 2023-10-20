@@ -36,7 +36,14 @@
     <br>
     <label for="breed">Breed</label>
     <br>
-    <input type="text" id="breed" name="breed" value = {{ old('breed', $animal->breed)}}>
+    <select name="breed" id="breed">
+@foreach($breeds as $breed)
+
+<option value={{ $breed }}> {{ $breed }}</option>
+
+@endforeach
+</select>
+
     <br>
     <label for="age">Age</label>
     <br>
@@ -49,6 +56,8 @@
     <button type="submit">Save</button>
 
     </form>
+
+
         
     
 </body>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Animal;
 use App\Models\Owner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AnimalController extends Controller
 {
@@ -24,7 +25,14 @@ class AnimalController extends Controller
     {
         $animal = new Animal();
 
-        return view('animals.form', compact('animal'));
+        // $breeds = DB::table('animals')->pluck('breed');
+        $breedsArray = Animal::query()->select('breed')->distinct()->orderBy('breed', 'asc')->get()->toArray();
+        $breeds = array_map(function ($item) {
+            return $item['breed'];
+        }, $breedsArray);
+
+
+        return view('animals.form', compact('animal', 'breeds'));
     }
 
     /**
@@ -96,7 +104,10 @@ class AnimalController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $animal = Animal::findOrFail($id);
+        $animal->delete();
+
+        return redirect('/animals');
     }
     public function search(Request $request)
     {
