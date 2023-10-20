@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
+use App\Models\Visit;
 use Illuminate\Http\Request;
 
 class VisitController extends Controller
@@ -25,9 +27,16 @@ class VisitController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $ids)
     {
-        //
+        $visit = new Visit();
+        $visit->animal_id = $ids[0];
+        $visit->owner_id = $ids[1];
+        $visit->description = $request->input("description");
+        $visit->visit_date = $request->input("visit_date");
+        $visit->save();
+        session()->flash('success', 'New visit created');
+        return redirect()->route('animals.show', $ids[0]);
     }
 
     /**
