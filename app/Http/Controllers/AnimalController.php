@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
@@ -35,7 +36,8 @@ class AnimalController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $animal = Animal::findOrFail($id);
+        return view('animals.details', ['animal' => $animal]);
     }
 
     /**
