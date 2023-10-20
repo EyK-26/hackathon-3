@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Animal;
 use Illuminate\Http\Request;
 
 class AnimalController extends Controller
@@ -19,7 +20,9 @@ class AnimalController extends Controller
      */
     public function create()
     {
-        //
+        $animal = new Animal();
+
+        return view('animals.form', compact('animal'));
     }
 
     /**
@@ -27,7 +30,20 @@ class AnimalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this->validateAnimal($request);
+
+        $animal = new Animal();
+        $animal->name = $request->input('name');
+        $animal->species = $request->input('species');
+        $animal->breed = $request->input('breed');
+        $animal->age = $request->input('age');
+        $animal->weight = $request->input('weight');
+        $animal->save();
+
+        session()->flash('success', 'New animal enterd');
+
+        return redirect()->route('animals.edit', $animal->id);
     }
 
     /**
@@ -43,7 +59,12 @@ class AnimalController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $animal = Animal::findOrFail($id);
+
+        $owner = $animal->getOwner();
+
+
+        return view('animals.form', compact('animal', 'owner'));
     }
 
     /**
@@ -51,7 +72,20 @@ class AnimalController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validateAnimal($request);
+
+        $animal = Animal::findOrFail($id);
+
+        $animal->name = $request->input('name');
+        $animal->species = $request->input('species');
+        $animal->breed = $request->input('breed');
+        $animal->age = $request->input('age');
+        $animal->weight = $request->input('weight');
+        $animal->save();
+
+        session()->flash('success', 'Animal edited');
+
+        return redirect()->route('animals.edit', $animal->id);
     }
 
     /**
@@ -60,5 +94,13 @@ class AnimalController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    private function validateAnimal(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required'
+
+        ]);
     }
 }

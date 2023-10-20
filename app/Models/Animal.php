@@ -16,4 +16,14 @@ class Animal extends Model
     {
         return $this->hasOne(Image::class);
     }
+    public function getOwner()
+    {
+        $ownerFName = $this->owner->first_name;
+        $ownerLName = $this->owner->surname;
+        return "$ownerFName $ownerLName";
+    }
+
+    public function getAge()
+    {
+    }
 }
