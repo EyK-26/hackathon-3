@@ -32,5 +32,5 @@ Route::get('/animals/{animal}', [AnimalController::class, 'show'])->whereNumber(
 
 Route::get('/owners/{owner}', [OwnerController::class, 'show'])->whereNumber('owner')->name('owners.show');
 
-
-Route::get('/search', [AnimalController::class, 'search']);
+Route::get('/search', [AnimalController::class, 'search'])->name('animals.search');
+Route::redirect('/', '/animals');
