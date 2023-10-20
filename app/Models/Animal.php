@@ -22,4 +22,8 @@ class Animal extends Model
         $ownerLName = $this->owner->surname;
         return "$ownerFName $ownerLName";
     }
+    public function visits()
+    {
+        return $this->hasMany(Visit::class);
+    }
 }
