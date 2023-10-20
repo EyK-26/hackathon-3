@@ -1,4 +1,5 @@
 <body style="background-color: #d1d1d1; padding: 0; margin: 0;">
+    @include('components.topmenu')
     <div style="padding-left: 2em;">
         <h1> {{ $owner->first_name . ' ' . $owner->surname }} </h1>
         @if (!empty($owner->email))
@@ -21,7 +22,8 @@
         @endif
     </div>
     <div style="display: flex;">
-        <div class="pets" style="background-color: #afafaf; max-width: 70em; padding-bottom: 5em; padding-top: 0.1em; padding-left: 2em;">
+        <div class="pets"
+            style="background-color: #afafaf; max-width: 70em; padding-bottom: 5em; padding-top: 0.1em; padding-left: 2em;">
             <h2>{{ $owner->first_name . "'s pets: "}}</h2>
             @foreach ($owner->animals as $animal)
             <div style="margin: 20px;">
